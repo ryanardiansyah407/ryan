@@ -447,3 +447,59 @@ async function deleteImage() {
       "❌ Gagal menghapus foto";
   }
 }
+
+
+let oauthToken = null;
+let pickerInited = false;
+let selectedFile = null;
+
+function initPicker() {
+  gapi.load("auth", { callback: onAuthApiLoad });
+  gapi.load("picker", { callback: onPickerApiLoad });
+}
+
+function onAuthApiLoad() {
+  gapi.auth.authorize(
+    {
+      client_id: CLIENT_ID,
+      scope: ["https://www.googleapis.com/auth/drive.file"],
+      immediate: false
+    },
+    handleAuth
+  );
+}
+
+function handleAuth(authResult) {
+  if (authResult && !authResult.error) {
+    oauthToken = authResult.access_token;
+    createPicker();
+  }
+}
+
+function createPicker() {
+  if (pickerInited && oauthToken) {
+
+    const picker = new google.picker.PickerBuilder()
+      .addView(google.picker.ViewId.DOCS_IMAGES)
+      .setOAuthToken(oauthToken)
+      .setDeveloperKey(DEVELOPER_KEY)
+      .setCallback(pickerCallback)
+      .build();
+
+    picker.setVisible(true);
+  }
+}
+
+function pickerCallback(data) {
+
+  if (data.action === google.picker.Action.PICKED) {
+
+    selectedFile = data.docs[0];
+
+    console.log("FILE:", selectedFile.url);
+  }
+}
+
+function openPicker() {
+  initPicker();
+}
