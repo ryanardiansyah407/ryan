@@ -1,3 +1,0 @@
-let skuData = [];
-
-let selectedSKU = [];
