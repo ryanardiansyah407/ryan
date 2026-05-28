@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>SELMA ACC BANDUNG</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css">
+
+</head>
+
+<body>
+
+
+
+<!-- =========================
+DASHBOARD
+========================= -->
+<div class="dashboard">
+
+  <div class="card">
+
+    <h2 id="total-sku">0</h2>
+
+    <p>Total SKU</p>
+
+  </div>
+
+
+
+  <div class="card">
+
+    <h2 id="with-image">0</h2>
+
+    <p>Sudah Ada Foto</p>
+
+  </div>
+
+
+
+  <div class="card">
+
+    <h2 id="without-image">0</h2>
+
+    <p>Belum Ada Foto</p>
+
+  </div>
+
+</div>
+
+  <div class="filter-box">
+
+  <button onclick="filterSKU('all')">
+    Semua
+  </button>
+
+  <button onclick="filterSKU('with-image')">
+    Sudah Ada Foto
+  </button>
+
+  <button onclick="filterSKU('without-image')">
+    Belum Ada Foto
+  </button>
+
+</div>
+
+
+
+<div id="filter-result"></div>
+
+
+
+
+<!-- =========================
+MAIN BOX
+========================= -->
+<div class="box">
+
+  <h1>Upload Foto Produk</h1>
+
+
+
+
+
+  <!-- =========================
+  SEARCH SKU
+  ========================= -->
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="sku"
+      autocomplete="off"
+      placeholder="Cari SKU">
+
+    <div id="suggestions"></div>
+
+  </div>
+
+
+
+
+
+  <!-- =========================
+  BUTTON TAMBAH SKU
+  ========================= -->
+  <button
+    type="button"
+    onclick="addSKU()">
+
+    Tambah SKU
+
+  </button>
+
+
+
+
+
+  <!-- =========================
+  LIST SKU TERPILIH
+  ========================= -->
+  <div id="sku-container"></div>
+
+
+
+
+
+  
+ <!-- =========================
+UPLOAD AREA STYLE GFORM
+========================= -->
+<div
+  class="upload-box"
+  id="drop-area">
+
+  <div class="upload-icon">
+📤
+
+  </div>
+
+  <h2>
+    Upload Foto Produk
+  </h2>
+
+  <p>
+    Drag & drop foto di sini
+  </p>
+
+  <span>
+    atau klik untuk memilih file
+  </span>
+
+  <input
+    type="file"
+    id="image"
+    multiple
+    accept="image/*"
+    hidden>
+
+ 
+</div>
+
+
+
+
+  <!-- =========================
+  PREVIEW FOTO BARU
+  ========================= -->
+  <img
+    id="preview"
+    style="
+      width:100%;
+      margin-top:15px;
+      border-radius:10px;
+      display:none;
+    ">
+
+
+
+
+
+  <!-- =========================
+  BULK PREVIEW
+  ========================= -->
+  <div id="bulk-preview"></div>
+
+
+
+
+
+  <!-- =========================
+  FOTO LAMA
+  ========================= -->
+  <h3>Foto Lama</h3>
+
+  <img
+    id="old-preview"
+    onerror="this.style.display='none'"
+    style="
+      width:100%;
+      border-radius:10px;
+      display:none;
+    ">
+
+
+
+
+
+  <!-- =========================
+  ACTION BUTTON
+  ========================= -->
+  <div class="button-group">
+
+    <button
+      onclick="uploadImage()">
+
+      Upload
+
+    </button>
+
+
+
+    <button
+      onclick="deleteImage()">
+
+      Hapus Foto
+
+    </button>
+
+  </div>
+
+
+
+
+
+  <!-- =========================
+  STATUS
+  ========================= -->
+  <p id="status"></p>
+
+</div>
+
+
+
+
+
+<!-- =========================
+SCRIPT
+========================= -->
+<script src="script.js"></script>
+
+</body>
+</html>
